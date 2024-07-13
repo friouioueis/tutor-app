@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0f2f5;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 1.5rem 2rem;
+  color: #333;
+  width: 100%;
+  height: 100px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  font-size: 1.5rem; /* Reduced font size */
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500; /* Slightly bolder */
+  color: #2c3e50;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 0.3s, font-size 0.3s;
+  cursor: pointer; /* Add cursor pointer for hand cursor */
+  margin-left: 10%; /* Push brandname to the middle */
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin-right: 10%; /* Push navbar links to the middle */
+}
+
+.navbar-links li a {
+  color: #333;
+  text-decoration: none;
+  font-size: 0.9rem; /* Reduced font size */
+  font-weight: 500;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.navbar-links li a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #2980b9;
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+.navbar-links li a:hover::after {
+  width: 100%;
+}
+
+.navbar-links li a:hover {
+  color: #2980b9; /* Match hover color */
+}
+
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.bar {
+  height: 4px;
+  width: 30px;
+  background-color: #333;
+  transition: transform 0.3s ease;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navbar {
+    height: 70px; /* Adjust height for mobile view */
+  }
+
+  .navbar-brand {
+    margin-left: 1rem; /* Adjust margin for mobile */
+  }
+
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    background-color: #f8f9fa;
+    width: 100%;
+    position: absolute;
+    top: 100px; /* adjust based on navbar height */
+    left: 0;
+    padding: 1rem 0;
+    margin-right: 0; /* Reset margin for mobile */
+  }
+
+  .navbar-links.active {
+    display: flex;
+  }
+
+  .navbar-links li {
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .navbar-toggle {
+    display: flex;
+  }
+}
