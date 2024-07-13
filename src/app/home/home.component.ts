@@ -1,19 +1,31 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  constructor(private router: Router) {}
+export class HomeComponent implements AfterViewInit {
 
-  viewCaseStudy() {
-    this.router.navigate(['/case-study-detail']);
-  }
+  ngAfterViewInit() {
+    const video: HTMLVideoElement | null = document.getElementById('homeVideo') as HTMLVideoElement;
 
-  viewAllCaseStudies() {
-    this.router.navigate(['/case-studies']);
+    if (video) {
+      video.play().catch(error => {
+        console.error('Error attempting to play the video:', error);
+      });
+    }
+
+    const homeComponent = document.querySelector('.home-component');
+
+    if (homeComponent && video) {
+      homeComponent.addEventListener('mouseenter', () => {
+        video.play();
+      });
+
+      homeComponent.addEventListener('mouseleave', () => {
+        video.pause();
+      });
+    }
   }
 }
