@@ -1,4 +1,4 @@
-import { Component, Renderer2, ElementRef, HostListener } from '@angular/core';
+import { Component, Renderer2, ElementRef, HostListener, ViewChild  } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -21,4 +21,12 @@ export class HomeComponent {
     const buttons = this.el.nativeElement.querySelector('.buttons');
     this.renderer.removeClass(buttons, 'visible');
   }
+
+  scrollToForm() {
+    const formSection = document.getElementById('formSection');
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }
+
