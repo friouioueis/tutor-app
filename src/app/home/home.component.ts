@@ -1,31 +1,24 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, Renderer2, ElementRef, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements AfterViewInit {
+export class HomeComponent {
+  constructor(private renderer: Renderer2, private el: ElementRef) {}
 
-  ngAfterViewInit() {
-    const video: HTMLVideoElement | null = document.getElementById('homeVideo') as HTMLVideoElement;
+  @HostListener('mouseenter') onMouseEnter() {
+    const overlayContent = this.el.nativeElement.querySelector('.overlay-content');
+    this.renderer.addClass(overlayContent, 'hidden');
+    const buttons = this.el.nativeElement.querySelector('.buttons');
+    this.renderer.addClass(buttons, 'visible');
+  }
 
-    if (video) {
-      video.play().catch(error => {
-        console.error('Error attempting to play the video:', error);
-      });
-    }
-
-    const homeComponent = document.querySelector('.home-component');
-
-    if (homeComponent && video) {
-      homeComponent.addEventListener('mouseenter', () => {
-        video.play();
-      });
-
-      homeComponent.addEventListener('mouseleave', () => {
-        video.pause();
-      });
-    }
+  @HostListener('mouseleave') onMouseLeave() {
+    const overlayContent = this.el.nativeElement.querySelector('.overlay-content');
+    this.renderer.removeClass(overlayContent, 'hidden');
+    const buttons = this.el.nativeElement.querySelector('.buttons');
+    this.renderer.removeClass(buttons, 'visible');
   }
 }

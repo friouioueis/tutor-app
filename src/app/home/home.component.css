@@ -1,17 +1,20 @@
-/* CSS for the home component */
 .home-component {
-  height: 100vh; /* Full viewport height */
-  width: 100%; /* Full viewport width */
+  height: 100vh;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
 
+.video-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 .home-background {
-  position: absolute; /* Change from relative to absolute */
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -19,45 +22,70 @@
 }
 
 .home-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position:absolute;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
   color: #fff;
   text-align: center;
+  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
+  backdrop-filter: blur(0); /* Initial blur effect */
+  transition: backdrop-filter 0.5s ease; /* Smooth transition for blur effect */
 }
 
 .overlay-content {
-  max-width: 600px; /* Adjust as needed */
+  max-width: 100%;
   padding: 20px;
+  font-size: 1.8rem;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.5px;
+  transition: opacity 0.5s ease; /* Smooth transition for opacity change */
 }
 
-.overlay-content h1, .overlay-content h2, .overlay-content p {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Shadow effect */
+.buttons {
+  position: absolute;
+  bottom: 20%; /* Adjusted button position closer to the text */
+  left: 50%;
+  transform: translateX(-50%);
+  display: none; /* Initially hidden */
+  gap: 1rem;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s ease; /* Smooth transition for opacity change */
 }
 
-.overlay-content h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+.buttons.visible {
+  display: flex; /* Show buttons */
+  opacity: 1; /* Make buttons visible */
 }
 
-.overlay-content h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+.button {
+  padding: 0.8rem 0; /* Adjusted padding */
+  width: 300px; /* Fixed width for both buttons */
+  font-size: 1.3rem;
+  color: #fff;
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 25px;
+  cursor: pointer;
+  text-align: center; /* Center text inside button */
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
 }
 
-.overlay-content p {
-  font-size: 1.5rem;
-  line-height: 1.6;
+.button:hover {
+  background-color: rgb(255, 255, 255);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #333;
 }
 
 .home-overlay:hover {
-  backdrop-filter: blur(5px); /* Blur effect on hover */
+  backdrop-filter: blur(5px); /* Increase blur effect on hover */
+}
+
+.home-overlay:hover .buttons {
+  display: flex; /* Show buttons on overlay hover */
+  opacity: 1; /* Make buttons visible */
 }
