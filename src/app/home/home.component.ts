@@ -26,6 +26,7 @@ export class HomeComponent {
     const formSection = document.getElementById('formSection');
     if (formSection) {
       formSection.scrollIntoView({ behavior: 'smooth' });
+      formSection.classList.add('form-visible');
     }
   }
 }

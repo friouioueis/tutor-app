@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-form',
@@ -6,15 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent {
-  formData = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: ''
-  };
+  visible = false;
 
-  submitForm() {
-    console.log('Form Data:', this.formData);
-    // Add form submission logic here (e.g., send data to backend, etc.)
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const formElement = document.querySelector('.form-container');
+    if (formElement) {
+      const rect = formElement.getBoundingClientRect();
+      const topShown = rect.top >= 0;
+      const bottomShown = rect.bottom <= window.innerHeight;
+
+      if (topShown && bottomShown) {
+        this.visible = true;
+      }
+    }
   }
 }

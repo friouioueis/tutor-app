@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { SlideshowComponent } from './slideshow/slideshow.component';
 import { FormComponent } from './form/form.component';
+import { ReactiveFormsModule } from '@angular/forms'; 
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FormComponent } from './form/form.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule // Required for ngModel
+    FormsModule, // Required for ngModel
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
